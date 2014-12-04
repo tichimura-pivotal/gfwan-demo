@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE cache PUBLIC
+  "-//GemStone Systems, Inc.//GemFire Declarative Caching 7.0//EN"
+  "http://www.gemstone.com/dtd/cache7_0.dtd">
+  
+<cache>
+  
+  <gateway-sender id="EU" remote-distributed-system-id="2" parallel = "false"
+      maximum-queue-memory="50" batch-size="10" batch-time-interval="1000"
+      manual-start="false"/>
+  <gateway-receiver/>
+  
+  <cache-server port="44444"/>
+
+  <pdx read-serialized="true"/>  <!-- servers will see PDXInstances instead of deserialized values -->
+
+  <region name="exampleRegion" refid="REPLICATE">
+    <region-attributes enable-gateway="true" gateway-sender-ids="EU" concurrency-checks-enabled="true"/>
+  </region>
+</cache>
